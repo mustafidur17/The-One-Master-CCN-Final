@@ -1,0 +1,285 @@
+Settings.cartesianRunSettings = SinkCCN.interval,Group.bufferSize,Group.msgTtl,MovementModel.rngSeed
+
+# ============================================================
+# NORMAL CCN-DTN SCENARIO
+# 12-HOUR CONTROLLED EXPERIMENT
+# ============================================================
+
+
+##################################################
+# CONSUMER APPLICATION
+##################################################
+
+SinkCCN.type = CCN_application
+
+# Consumer mode
+SinkCCN.mode = 1
+
+# Interest generation
+SinkCCN.interval = [1800;1500;1200;900;600]
+SinkCCN.numOfMsgToGenerate = 1000
+SinkCCN.queryRange = 1,101
+SinkCCN.queryDistribution = 1
+SinkCCN.seedQuery = 12
+SinkCCN.destinationRange = 45,50
+
+# Message sizes
+SinkCCN.interestSize = 50
+SinkCCN.contentSize = 150
+
+# Cache and PIT
+SinkCCN.cacheCapacity = 10
+SinkCCN.avaCache = 0,1
+SinkCCN.maxCarriedContent = 1
+SinkCCN.enablePIT = true
+
+
+##################################################
+# INTERMEDIATE CCN CACHE APPLICATION
+##################################################
+
+RelayCCN.type = CCN_application
+
+# Intermediate mode
+RelayCCN.mode = 3
+
+# Message sizes
+RelayCCN.interestSize = 50
+RelayCCN.contentSize = 150
+
+# Cache and PIT
+RelayCCN.cacheCapacity = 10
+RelayCCN.avaCache = 0,1
+RelayCCN.maxCarriedContent = 1
+RelayCCN.enablePIT = true
+
+
+##################################################
+# NORMAL PRODUCER APPLICATION
+# Used by addresses 45-47
+##################################################
+
+SourceCCN.type = CCN_application
+
+# Producer mode
+SourceCCN.mode = 2
+
+# Message sizes
+SourceCCN.interestSize = 50
+SourceCCN.contentSize = 150
+
+# Cache settings
+SourceCCN.cacheCapacity = 10
+SourceCCN.avaCache = 1,1
+SourceCCN.maxCarriedContent = 1
+
+# Legitimate content preload
+SourceCCN.staticCacheCapacity = 20
+SourceCCN.staticCacheRange = 1,101
+SourceCCN.seedStaticCache = 36
+
+# PIT enabled
+SourceCCN.enablePIT = true
+
+
+################################################################
+# CONTROL NORMAL PRODUCER APPLICATION
+# Nodes 48-49 Matches the malicious producer capacity and range
+################################################################
+
+ControlSourceCCN.type = CCN_application
+
+# Producer mode
+ControlSourceCCN.mode = 2
+
+# Message sizes
+ControlSourceCCN.interestSize = 50
+ControlSourceCCN.contentSize = 150
+
+# Cache settings
+ControlSourceCCN.cacheCapacity = 10
+ControlSourceCCN.avaCache = 1,1
+ControlSourceCCN.maxCarriedContent = 1
+
+# Legitimate content preload
+ControlSourceCCN.staticCacheCapacity = 100
+ControlSourceCCN.staticCacheRange = 1,101
+ControlSourceCCN.seedStaticCache = 36
+
+# PIT enabled
+ControlSourceCCN.enablePIT = true
+
+
+##############################################################
+# NODE GROUP ASSIGNMENTS
+##############################################################
+
+#=============================================================
+# Group 1: 40 pure DTN relay nodes (Nodes 0-39)
+#=============================================================
+
+Group1.groupID = d
+Group1.nrofHosts = 40
+
+
+#=============================================================
+# Group 2: 3 CCN consumers  (Nodes 40-42)
+#=============================================================
+
+Group2.groupID = sK
+Group2.nrofHosts = 3
+Group2.nrofApplications = 1
+Group2.application1 = SinkCCN
+
+
+#=============================================================
+# Group 3: 2 CCN Intermediate/cache nodes (Nodes 43-44)
+#=============================================================
+
+Group3.groupID = rL
+Group3.nrofHosts = 2
+Group3.nrofApplications = 1
+Group3.application1 = RelayCCN
+
+
+#=============================================================
+# Group 4: 3 Normal Producers (Nodes 45-47)
+#=============================================================
+
+Group4.groupID = sR
+Group4.nrofHosts = 3
+Group4.nrofApplications = 1
+Group4.application1 = SourceCCN
+
+
+#=============================================================
+# Group 5: 2 Control Normal Producers (Nodes 48-49)
+# groupID m is kept identical to the attack scenarioS
+#=============================================================
+
+Group5.groupID = nS
+Group5.nrofHosts = 2
+Group5.nrofApplications = 1
+Group5.application1 = ControlSourceCCN
+
+
+#####################################################
+# SCENARIO SETTINGS
+#####################################################
+
+Scenario.name = CCN_Normal_48h_Int%%SinkCCN.interval%%_TTL%%Group.msgTtl%%_Buf%%Group.bufferSize%%_Seed%%MovementModel.rngSeed%%
+Scenario.simulateConnections = true
+Scenario.updateInterval = 0.1
+Scenario.endTime = 172800
+Scenario.nrofHostGroups = 5
+
+
+#####################################################
+# WIRELESS INTERFACE SETTINGS
+#####################################################
+
+btInterface.type = SimpleBroadcastInterface
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+
+
+#####################################################
+# COMMON ROUTING AND MOBILITY SETTINGS
+#####################################################
+
+Group.movementModel = ShortestPathMapBasedMovement
+Group.okMaps = 1
+Group.router = EpidemicRouter
+Group.waitTime = 0,30
+Group.speed = 2.7,13.9
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+
+#####################################################
+# MESSAGE AND BUFFER SETTINGS
+#####################################################
+
+# DTN router buffer size
+Group.bufferSize = [100k;500k;1M;2M;5M]
+
+# Message lifetime in minutes
+Group.msgTtl = [300;600]
+
+# Disable ordinary DTN message generation
+# Only CCN Interest/Data traffic is evaluated
+Events.nrof = 0
+
+
+#####################################################
+# MOVEMENT AND MAP SETTINGS
+#####################################################
+
+MovementModel.worldSize = 4500,3400
+MovementModel.warmup = 100
+
+MapBasedMovement.nrofMapFiles = 4
+MapBasedMovement.mapFile1 = data/roads.wkt
+MapBasedMovement.mapFile2 = data/main_roads.wkt
+MapBasedMovement.mapFile3 = data/pedestrian_paths.wkt
+MapBasedMovement.mapFile4 = data/shops.wkt
+
+
+#####################################################
+# REPORT SETTINGS
+#####################################################
+
+# ============================================================
+# Standard DTN delivery statistics.
+# Shared CCN content-integrity and cache-behavior statistics.
+# ============================================================
+
+Report.nrofReports = 2
+Report.warmup = 0
+Report.reportDir = reports/
+
+Report.report1 = MessageStatsReport
+Report.report2 = MaliciousCCN_application_reporter
+
+
+#####################################################
+# RANDOMIZATION SETTINGS
+#####################################################
+
+# Multiple mobility randomness seeds
+MovementModel.rngSeed = [1;2;3]
+
+
+#####################################################
+# EXPERIMENT COUNT
+#####################################################
+
+# Consumer interval values = 3
+#   1800 seconds: low request load
+#    900 seconds: medium request load
+#    600 seconds: high request load
+#
+# DTN buffer sizes = 3
+#   100k: constrained buffer
+#     1M: moderate buffer
+#     5M: large baseline buffer
+#
+# Message TTL values = 2
+#    300 minutes: 5-hour lifetime
+#    600 minutes: 10-hour lifetime
+#
+# RNG seeds = 3
+#
+# Total runs for this normal configuration:
+# 5 intervals x 5 buffer sizes x 2 TTL values x 3 seeds = 150 runs
+#
+# Run command:
+# one.bat -b 150 CCN_Normal_configuration.txt
+
+
+#####################################################
+# OPTIMIZATION SETTINGS
+#####################################################
+
+Optimization.cellSizeMult = 5
+Optimization.randomizeUpdateOrder = false
