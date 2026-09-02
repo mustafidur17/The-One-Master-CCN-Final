@@ -3,7 +3,7 @@ Settings.cartesianRunSettings = SinkCCN.interval,Group.bufferSize,Group.msgTtl,M
 # ============================================================
 # INFORMATION INJECTION ATTACK
 # FALSE CONTENT INJECTION IN HYBRID CCN-DTN IoV
-# 12-HOUR CONTROLLED EXPERIMENT
+# 24-HOUR CONTROLLED EXPERIMENT
 # ============================================================
 
 
