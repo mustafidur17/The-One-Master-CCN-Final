@@ -2,7 +2,7 @@ Settings.cartesianRunSettings = SinkCCN.interval,Group.bufferSize,Group.msgTtl,M
 
 # ============================================================
 # NORMAL CCN-DTN SCENARIO
-# 12-HOUR CONTROLLED EXPERIMENT
+# 24-HOUR CONTROLLED EXPERIMENT
 # ============================================================
 
 
