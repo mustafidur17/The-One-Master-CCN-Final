@@ -1,0 +1,20 @@
+Message stats for scenario Malicious_injection_24h_Int900_TTL300_Buf2M_Seed2
+sim_time: 86400.0000
+created: 1847
+started: 73721
+relayed: 73721
+aborted: 0
+dropped: 58994
+removed: 0
+delivered: 1363
+delivery_prob: 0.7380
+response_prob: 0.0000
+overhead_ratio: 53.0873
+latency_avg: 477.0436
+latency_med: 435.3000
+hopcount_avg: 3.1996
+hopcount_med: 3
+buffertime_avg: 17502.6455
+buffertime_med: 17519.3000
+rtt_avg: NaN
+rtt_med: NaN
