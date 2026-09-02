@@ -1,0 +1,24 @@
+WebApp stats for scenario CCN_Normal_24h_Int1200_TTL600_Buf500k_Seed2
+sim_time: 86400.0000
+
+oppo_cahce_hit: 890
+oppo_cache_miss: 892
+drop_list:  0
+drop_pit:  247
+drop_nonce:  3
+query_count: 198
+duplicated_query: 15
+static_cache_hit: 504
+static_cache_miss: 486
+response_count: 198
+false_content_generated: 0
+false_content_cached: 0
+false_content_received: 0
+legitimate_content_received: 198
+false_content_reception_ratio: 0.0
+total_cache_evictions: 560
+legitimate_content_evicted_by_false: 0
+max_cache_occupancy: 10
+max_false_content_in_cache: 0
+max_false_cache_ratio: 0.0
+average_interval: 2348
