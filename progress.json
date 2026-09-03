@@ -141,7 +141,8 @@
     137,
     138,
     139,
-    140
+    140,
+    141
   ],
   "Attack_completed": [
     0,
@@ -284,5 +285,5 @@
   ],
   "Normal_failed": [],
   "Attack_failed": [],
-  "Last_update_bd": "03 Sep 2026, 07:58 AM"
+  "Last_update_bd": "03 Sep 2026, 08:07 AM"
 }
