@@ -1,0 +1,24 @@
+WebApp stats for scenario Malicious_injection_24h_Int600_TTL300_Buf2M_Seed1
+sim_time: 86400.0000
+
+oppo_cahce_hit: 1791
+oppo_cache_miss: 1757
+drop_list:  0
+drop_pit:  464
+drop_nonce:  0
+query_count: 396
+duplicated_query: 33
+static_cache_hit: 1021
+static_cache_miss: 953
+response_count: 393
+false_content_generated: 157
+false_content_cached: 10469
+false_content_received: 319
+legitimate_content_received: 74
+false_content_reception_ratio: 0.811704834605598
+total_cache_evictions: 968
+legitimate_content_evicted_by_false: 153
+max_cache_occupancy: 10
+max_false_content_in_cache: 10
+max_false_cache_ratio: 1.0
+average_interval: 4089
